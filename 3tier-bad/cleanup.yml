@@ -1,6 +1,11 @@
+# Reverse 3 Tier app deployment
+#
+#   Remove all repos
+#   Remove the base 3 tier app packages (haproxy, tomcat etc)
+
 - name: cleanup
   hosts: all
   gather_facts: false
   become: true
   roles:
-    - { role: "./roles/cleaner" }
+    - cleaner

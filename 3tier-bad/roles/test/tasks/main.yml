@@ -1,0 +1,20 @@
+---
+- name: check tomcat serving via haproxy
+  uri:
+    url: http://frontend1.{{ GUID }}.example.opentlc.com/ansible
+  register: test_frontend1
+  tags: test_frontend
+
+- name: display result of tomcat
+  debug:
+    var: test_frontend1
+  tags: test_frontend
+
+- name: display all variables/facts known for a host
+  debug: 
+    var: hostvars[inventory_hostname]
+  tags: test_frontend
+
+
+
+

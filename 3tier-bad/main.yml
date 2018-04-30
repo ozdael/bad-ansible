@@ -1,0 +1,32 @@
+---
+- name: base configuration
+  hosts: all
+  gather_facts: false
+  become: yes
+  roles:
+    - config
+
+- name: configure loadbalancer
+  hosts: frontends
+  gather_facts: false
+  become: yes
+  roles:
+    - lb
+
+- name: configure application
+  hosts: apps
+  become: yes 
+  roles:
+    - app
+
+- name: configure database
+  hosts: appdbs
+  roles:
+    - role: geerlingguy.postgresql
+      become: yes
+
+- name: test application
+  hosts: frontends
+  roles:
+    - { role: test, tags: test_appl }
+

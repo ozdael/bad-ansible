@@ -1,0 +1,14 @@
+---
+- name: reboot all nodes of 3 tier app development
+  hosts: all
+  gather_facts: false
+  become: yes
+
+  tasks:
+  - name: reboot node
+    shell: reboot
+    async: 0
+    poll: 0
+  - name: wait for {{ inventory_hostname }} to come back
+    local_action: wait_for host={{ inventory_hostname }} state=started
+

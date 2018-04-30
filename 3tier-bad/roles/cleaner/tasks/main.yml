@@ -1,6 +1,4 @@
 ---
-# Initial, common, system setup steps
-
 - name: reverse the enabling of sudo without tty for some ansible commands
   replace:
     path: /etc/sudoers

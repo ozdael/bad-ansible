@@ -1,0 +1,5 @@
+---
+- name: Reboot all nodes of the 3 tier app deployment      
+  hosts: all
+  roles:
+    - reboot_nodes
