@@ -16,7 +16,7 @@
 - name: copy static index.html to {{ tomcat_webapps_root }}
   template:
     src: index.html.j2
-    dest: "{{ tomcat_webapps_apps }}/index.html"
+    dest: "{{ tomcat_webapps_root }}/index.html"
     mode: 0644
   notify:
     - restart tomcat
@@ -25,17 +25,3 @@
   service:
     name: tomcat
     state: started
-
-- name: create tomcat directory {{ tomcat_webapps_apps }}
-  file:
-    path: "{{ tomcat_webapps_apps }}"
-    state: directory
-
-- name: copy static index.html to {{ tomcat_webapps_apps }}
-  template:
-    src: "index.html.{{ ansible_hostname }}"
-    dest: "{{ tomcat_webapps_apps }}/index.html"
-  notify:
-    - restart tomcat
-
-
